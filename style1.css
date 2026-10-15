@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    background-color: #151515;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor {
+    background-color: black;
+    padding: 50px;
+    width: 85%;
+    min-height: 75vh;
+    border: 3px solid rgba(7, 7, 238, 0.845);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#logo {
+    text-align: center;
+    background-color: black;
+    padding: 35px 15px;
+}
+
+#logo i {
+    margin: 0;
+    color: rgba(7, 7, 238, 0.845);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    font-style: normal;
+}
+
+#logo h1 {
+    margin: 20px 0;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+}
+
+#logo p {
+    color: #aaaaaa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+#linea {
+    background-color: rgba(7, 7, 238, 0.845);
+    height: 4px;
+    margin: 10px 0 30px 0;
+}
+
+#introduccion {
+    text-align: center;
+    padding: 10px 30px;
+}
+
+#introduccion h2 {
+    color: rgba(7, 7, 238, 0.845);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+#introduccion p {
+    color: #aaaaaa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+#lista-laboratorios {
+    display: flex;
+    justify-content: center;
+    padding: 25px 10px;
+}
+
+#lista-laboratorios a {
+    color: white;
+    background-color: rgba(7, 7, 238, 0.845);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    padding: 25px 45px;
+    border: 2px solid rgba(7, 7, 238, 0.845);
+    width: 300px;
+}
+
+#lista-laboratorios a:hover {
+    color: rgba(7, 7, 238, 0.845);
+    background-color: white;
+    border: 2px solid white;
+}
+
+#regreso {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#regreso a {
+    color: white;
+    background-color: #151515;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    text-decoration: none;
+    text-align: center;
+    padding: 18px 30px;
+    border: 2px solid rgba(7, 7, 238, 0.845);
+}
+
+#regreso a:hover {
+    color: rgba(7, 7, 238, 0.845);
+    background-color: white;
+}
