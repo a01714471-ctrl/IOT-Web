@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+#contenedor {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#titulo {
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 3px;
+    padding: 15px;
+    color: #38bdf8;
+}
+
+#principal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+#mapa {
+    position: relative;
+    width: 900px;
+    height: 743px;
+    background-image: url("estacionamiento.png");
+    background-size: 100% 100%;
+    border: 3px solid #38bdf8;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cajon {
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.libre {
+    background-color: rgba(34, 197, 94, 0.60);
+}
+
+.ocupado {
+    background-color: rgba(239, 68, 68, 0.65);
+}
+
+.cajon:hover {
+    border: 2px solid yellow;
+    z-index: 5;
+}
+
+
+#panel {
+    width: 280px;
+    background-color: #1e293b;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#panel h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #38bdf8;
+    letter-spacing: 2px;
+}
+
+#panel h3 {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #94a3b8;
+}
+
+.dato {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #334155;
+}
+
+.dato b {
+    font-size: 24px;
+}
+
+.rojo  { color: #f87171; }
+.verde { color: #4ade80; }
+
+#barra {
+    height: 14px;
+    background-color: #334155;
+    border-radius: 7px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+#relleno {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+    background-size: 280px 100%;
+    transition: width 0.5s;
+}
+
+#botones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0284c7;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0ea5e9;
+}
+
+#leyenda {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.punto {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px 0 10px;
+}
+
+.punto.libre   { background-color: #22c55e; }
+.punto.ocupado { background-color: #ef4444; }
+
+#registro {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+}
+
+#registro li {
+    padding: 5px 0;
+    border-bottom: 1px solid #334155;
+}
+
+#registro small {
+    color: #64748b;
+}
+
+#pie {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #64748b;
+}

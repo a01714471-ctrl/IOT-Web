@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamiento Inteligente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="contenedor">
+
+        <div id="titulo">
+            <i>ESTACIONAMIENTO INTELIGENTE · TEC DE MONTERREY QRO</i>
+        </div>
+
+        <div id="principal">
+
+            <div id="mapa"></div>
+
+            <div id="panel">
+                <h2>DASHBOARD</h2>
+
+                <div class="dato"><span>Total de espacios</span><b id="total">0</b></div>
+                <div class="dato"><span>Ocupados</span><b id="ocupados" class="rojo">0</b></div>
+                <div class="dato"><span>Disponibles</span><b id="disponibles" class="verde">0</b></div>
+                <div class="dato"><span>Ocupación</span><b id="porcentaje">0%</b></div>
+
+                <div id="barra"><div id="relleno"></div></div>
+
+                <div id="leyenda">
+                    <span class="punto libre"></span> Disponible
+                    <span class="punto ocupado"></span> Ocupado
+                </div>
+            </div>
+
+        </div>
+
+        <div id="pie">
+            <i>HAZ CLIC EN UN CAJÓN PARA CAMBIAR SU ESTADO</i>
+        </div>
+
+    </div>
+
+<script>
+    var escala = 900 / 1522;
+    var mapa = document.getElementById("mapa");
+
+    // Crea una fila de cajones
+    function crearFila(x, y, dx, dy, cantidad, ancho, alto, giro) {
+        for (var i = 0; i < cantidad; i++) {
+            var div = document.createElement("div");
+            div.className = "cajon libre";
+            div.style.width = ancho * escala + "px";
+            div.style.height = alto * escala + "px";
+            div.style.left = (x + i * dx - ancho / 2) * escala + "px";
+            div.style.top = (y + i * dy - alto / 2) * escala + "px";
+            div.style.transform = "rotate(" + giro + "deg)";
+            div.setAttribute("onclick", "cambiar(this)");
+            mapa.appendChild(div);
+        }
+    }
+
+    crearFila(268, 593, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(329, 574, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(468, 498, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(529, 479, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(664, 383, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(725, 364, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(846, 293, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(907, 274, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(1046, 178, 10.5, 34.4, 17, 64, 36, -17);
+    crearFila(1107, 159, 10.5, 34.4, 17, 64, 36, -17);
+
+    crearFila(240, 815, 6.5, 18.9, 17, 44, 20, -19);
+
+    crearFila(1215, 790, -34.6, 20, 10, 36, 40, 60);
+
+    crearFila(610, 320, 47.5, -21.1, 10, 40, 52, -114);
+
+    var todos = document.getElementsByClassName("cajon");
+
+    function cambiar(cajon) {
+        if (cajon.className == "cajon libre") {
+            cajon.className = "cajon ocupado";
+        } else {
+            cajon.className = "cajon libre";
+        }
+        actualizar();
+    }
+
+    function actualizar() {
+        var total = todos.length;
+        var ocupados = document.getElementsByClassName("cajon ocupado").length;
+        var porcentaje = Math.round(ocupados / total * 100);
+
+        document.getElementById("total").innerHTML = total;
+        document.getElementById("ocupados").innerHTML = ocupados;
+        document.getElementById("disponibles").innerHTML = total - ocupados;
+        document.getElementById("porcentaje").innerHTML = porcentaje + "%";
+        document.getElementById("relleno").style.width = porcentaje + "%";
+    }
+
+    for (var i = 0; i < todos.length; i++) {
+        if (Math.random() < 0.6) {
+            todos[i].className = "cajon ocupado";
+        }
+    }
+    actualizar();
+
+    setInterval(function () {
+        var n = Math.floor(Math.random() * todos.length);
+        cambiar(todos[n]);
+    }, 2000);
+</script>
+
+</body>
+</html>
