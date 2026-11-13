@@ -31,6 +31,8 @@
                 <div id="leyenda">
                     <span class="punto libre"></span> Disponible
                     <span class="punto ocupado"></span> Ocupado
+                    <br><br>
+                    DISC = Discapacitados &nbsp;&nbsp; DESC = Descarga
                 </div>
             </div>
 
@@ -47,6 +49,8 @@
     var mapa = document.getElementById("mapa");
 
     // Crea una fila de cajones
+    // x, y = centro del primer cajón | dx, dy = cuánto se mueve cada cajón
+    // ancho = profundidad del cajón | alto = largo a lo largo de la fila | giro = grados
     function crearFila(x, y, dx, dy, cantidad, ancho, alto, giro) {
         for (var i = 0; i < cantidad; i++) {
             var div = document.createElement("div");
@@ -61,25 +65,41 @@
         }
     }
 
-    crearFila(268, 593, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(329, 574, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(468, 498, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(529, 479, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(664, 383, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(725, 364, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(846, 293, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(907, 274, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(1046, 178, 10.5, 34.4, 17, 64, 36, -17);
-    crearFila(1107, 159, 10.5, 34.4, 17, 64, 36, -17);
+    // Marca un cajón como especial (palabra y borde de color)
+    function marcar(cajon, palabra, color) {
+        cajon.innerHTML = "<span style='display:inline-block; transform:rotate(-61deg)'>" + palabra + "</span>";
+        cajon.style.border = "2px solid " + color;
+    }
 
-    crearFila(240, 815, 6.5, 18.9, 17, 44, 20, -19);
+    // 5 bloques centrales (2 filas de 17 cada uno)
+    crearFila(262, 605, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(330, 575, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(445, 497, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(513, 467, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(651, 397, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(719, 367, 16.1, 33.1, 17, 60, 37, -26);
+    crearFila(815, 300, 13.9, 28.8, 17, 60, 32, -26);
+    crearFila(883, 270, 13.7, 28.8, 17, 60, 32, -25);
+    crearFila(1030, 185, 13.4, 28.4, 17, 60, 31, -25);
+    crearFila(1098, 155, 13.2, 28.4, 17, 60, 31, -25);
 
-    crearFila(1215, 790, -34.6, 20, 10, 36, 40, 60);
+    // 17 lugares abajo de los árboles (lado izquierdo)
+    crearFila(205, 815, 9.2, 19.1, 17, 34, 21, -26);
 
-    crearFila(610, 320, 47.5, -21.1, 10, 40, 52, -114);
+    // Junto al Oxxo: 13 lugares (10 normales + 3 especiales)
+    crearFila(1326, 736, -43.6, 24.4, 13, 34, 50, 61);
+    var n = mapa.children.length;
+    marcar(mapa.children[n - 13], "DISC", "#38bdf8");   // primero: discapacitados
+    marcar(mapa.children[n - 2], "DISC", "#38bdf8");    // penúltimo: discapacitados
+    marcar(mapa.children[n - 1], "DESC", "#facc15");    // último: descarga
 
+    // 15 lugares hasta arriba (dentro del cuadro rojo)
+    crearFila(565, 320, 35.7, -18.8, 15, 34, 40, -118);
+
+    // Todos los cajones del mapa
     var todos = document.getElementsByClassName("cajon");
 
+    // Cambia el estado de un cajón (clic o sensor)
     function cambiar(cajon) {
         if (cajon.className == "cajon libre") {
             cajon.className = "cajon ocupado";
@@ -89,6 +109,7 @@
         actualizar();
     }
 
+    // Calcula y muestra los datos del dashboard
     function actualizar() {
         var total = todos.length;
         var ocupados = document.getElementsByClassName("cajon ocupado").length;
@@ -101,6 +122,7 @@
         document.getElementById("relleno").style.width = porcentaje + "%";
     }
 
+    // Sensores: estado inicial aleatorio
     for (var i = 0; i < todos.length; i++) {
         if (Math.random() < 0.6) {
             todos[i].className = "cajon ocupado";
@@ -108,9 +130,10 @@
     }
     actualizar();
 
+    // Cada 2 segundos un sensor cambia solo
     setInterval(function () {
-        var n = Math.floor(Math.random() * todos.length);
-        cambiar(todos[n]);
+        var m = Math.floor(Math.random() * todos.length);
+        cambiar(todos[m]);
     }, 2000);
 </script>
 
